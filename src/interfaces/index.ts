@@ -1,3 +1,2 @@
 // Archivo indice para exportaciones de interfaces
-
-export * from './Navbar'
+export * from './pokemon-api-interface'
