@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 import { Card, Grid, Row, Text } from '@nextui-org/react'
+import { SmallPokemons } from '@/interfaces';
 
 // Interface local
 interface Props {
-  id: number;
-  name: string;
-  img: string;
+  pokemon: SmallPokemons
 }
 
-export const PokemonCard: FC<Props> = ({ id, name, img }) => {
+export const PokemonCard: FC<Props> = ({ pokemon }) => {
+
+  const { id, name, img } = pokemon
 
   return (
     <Grid key={id} xs={6} sm={3} md={2} xl={1}>

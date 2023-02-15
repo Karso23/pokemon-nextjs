@@ -28,8 +28,8 @@ const HomePage: FC<Props> = ({ pokemons }) => {
       <MainLayout title='Lista de Pokemons' >
 
         <Grid.Container gap={2} justify='flex-start'>
-          {pokemons.map(({ id, name, img }) => (
-            <PokemonCard key={id} id={id} name={name} img={img} />
+          {pokemons.map(pokemon => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
         </Grid.Container>
 
