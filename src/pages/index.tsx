@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { GetStaticProps } from 'next'
-import { Grid } from "@nextui-org/react";
-import { MainLayout } from '@/layouts/';
-import { PokemonCard } from '@/components';
-import { PokemonApiResponse, SmallPokemons } from '@/interfaces';
-import { pokeApi } from 'api';
-
+import { Grid } from "@nextui-org/react"
+import { MainLayout } from '@/layouts/'
+import { PokemonCard } from '@/components'
+import { PokemonApiResponse, SmallPokemons } from '@/interfaces'
+import { pokeApi } from 'api'
+import { urlImg } from '@/helpers'
 
 
 //Interface que asignaremos a las props de nuestro componente 
@@ -17,9 +17,7 @@ interface Props {
 }
 
 // Local Constantes
-const limit: number = 50;
-const urlImg: string = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/`;
-
+const limit: number = 150;
 
 const HomePage: FC<Props> = ({ pokemons }) => {
 
@@ -38,7 +36,7 @@ const HomePage: FC<Props> = ({ pokemons }) => {
   )
 }
 
-//* ============================== Logica que se ejecuta del lado del servidor ==========================
+//* ================= Logica que se ejecuta del lado del servidor ================
 
 //> Esto se ejeecuta antes de que el componente se cargue ya que se ejecuta a nivel servidor es mejor que un useEffect de React.
 
@@ -54,7 +52,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const pokemons: SmallPokemons[] = data.results.map((e, i) => ({
     ...e,
     id: i + 1,
-    img: `${urlImg}${i + 1}.svg`
+    img: `${urlImg((i + 1).toString())}`
   }))
 
   return {

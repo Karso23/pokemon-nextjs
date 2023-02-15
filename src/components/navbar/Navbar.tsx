@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
+import NextLink from 'next/link'
 import Image from 'next/image'
-import { Spacer, Text, useTheme } from '@nextui-org/react'
+import { Button, Spacer, Link, Text, useTheme, Grid } from '@nextui-org/react';
 
-const imgSource = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
+const imgSource = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
 
 export const Navbar: FC = () => {
 
@@ -18,6 +19,18 @@ export const Navbar: FC = () => {
       backgroundColor: theme?.colors.black.value
     }}>
 
+      <Button color='warning' ghost css={{ height: 'fit-content' }}>
+        <NextLink href='/' passHref>
+          <Grid.Container css={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Text h1 color='yellow'>P</Text>
+            <Text h3>okémon</Text>
+            <Text h1 color='yellow'>D</Text>
+            <Text h3>ex</Text>
+          </Grid.Container>
+        </NextLink>
+      </Button>
+
+
       <Image
         src={imgSource}
         alt='icono de la app'
@@ -25,12 +38,13 @@ export const Navbar: FC = () => {
         height={100}
       />
 
-      <Text h1>P</Text>
-      <Text h3>okémon</Text>
-
       <Spacer css={{ flex: 1 }} />
 
-      <Text>Favoritos</Text>
+      <Button color='warning' ghost css={{ height: 'fit-content' }}>
+        <NextLink href='/favorites' passHref>
+          <Text h2 css={{ color: 'orange' }}>Favorites</Text>
+        </NextLink>
+      </Button>
 
     </div>
   )

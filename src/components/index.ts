@@ -2,3 +2,4 @@
 
 export * from './pokemon/PokemonCard'
 export * from './navbar/Navbar'
+export * from './details/PokemonDetails'
