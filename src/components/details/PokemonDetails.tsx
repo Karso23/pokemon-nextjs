@@ -1,16 +1,29 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import Image from 'next/image';
-import { Button, Card, Grid, Text } from '@nextui-org/react'
-import { urlImg } from '@/helpers'
-import { PokeDetail } from '@/interfaces'
 
+import { Button, Card, Grid, Text } from '@nextui-org/react'
+
+import { PokeDetail } from '@/interfaces'
+import { urlImg } from '@/helpers'
+import { localFavorites } from 'utils';
 interface Props {
   pokemon: PokeDetail;
 }
 
 const PokemonDetails: FC<Props> = ({ pokemon }) => {
 
-  const { name, id, stats, types, abilities, moves, sprites } = pokemon
+  const { name, id, stats, types, abilities, moves, sprites } = pokemon;
+
+  const [isInFavorites, setIsInFavorites] = useState(localFavorites.existInFavorites(id))
+
+  // Handler que guarda o borra el id de nuestro arreglo de local storage
+  const onToggleFavorite = (): void => {
+    localFavorites.toggleFavorite(pokemon.id)
+
+    // Setea lo opuesto que hay en isInFavorites
+    setIsInFavorites(!isInFavorites)
+
+  }
 
   return (
     <>
@@ -36,7 +49,13 @@ const PokemonDetails: FC<Props> = ({ pokemon }) => {
 
             <Card.Header css={{ justifyContent: 'space-between' }}>
               <Text transform='capitalize' h2>{pokemon.name}</Text>
-              <Button color='warning' ghost>Save to Favorites</Button>
+              <Button
+                ghost
+                onClick={onToggleFavorite}
+                color={isInFavorites ? 'error' : 'success'}
+              >
+                {isInFavorites ? 'Delete from favorites' : 'Save to Favorites'}
+              </Button>
             </Card.Header>
 
             <Card.Divider color='warning' />
