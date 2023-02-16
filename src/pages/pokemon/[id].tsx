@@ -35,7 +35,7 @@ export default PokemonDetail;
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   // Intruccion que crea un array de 150 elementos
-  const arr151 = [...Array(15)].map((e, i) => `${i + 1}`)
+  const arr151 = [...Array(250)].map((e, i) => `${i + 1}`)
 
   return {
     paths: arr151.map(id => ({

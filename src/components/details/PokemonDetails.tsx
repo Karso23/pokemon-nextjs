@@ -51,7 +51,7 @@ const PokemonDetails: FC<Props> = ({ pokemon }) => {
               <Text transform='capitalize' h2>{pokemon.name}</Text>
               <Button
                 ghost
-                onClick={onToggleFavorite}
+                onPress={onToggleFavorite}
                 color={isInFavorites ? 'error' : 'success'}
               >
                 {isInFavorites ? 'Delete from favorites' : 'Save to Favorites'}

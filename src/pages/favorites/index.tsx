@@ -1,12 +1,20 @@
 import React from 'react'
-import { Text } from '@nextui-org/react'
 import { MainLayout } from '@/layouts'
+import { NoFavorites, Favorites as FavoritesPokemons } from '@/components';
+import { localFavorites } from 'utils';
 
 const Favorites = () => {
+
+  const favorites = localFavorites.savedPokemons()
+
   return (
 
     <MainLayout>
-      <Text h1>Favorites Page</Text>
+      {
+        favorites.length > 0
+          ? <FavoritesPokemons pokemons={favorites} />
+          : <NoFavorites />
+      }
     </MainLayout>
 
   )
