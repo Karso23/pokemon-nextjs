@@ -5,7 +5,6 @@ import { PokeDetail } from '@/interfaces'
 import PokemonDetails from '@/components/details/PokemonDetails'
 import { getPokemonInfo } from 'utils';
 
-
 interface Props {
   pokemon: PokeDetail;
 }
