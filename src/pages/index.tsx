@@ -23,7 +23,7 @@ const HomePage: FC<Props> = ({ pokemons }) => {
 
   return (
     <>
-      <MainLayout title='Lista de Pokemons' >
+      <MainLayout title='PokemonsDex' >
 
         <Grid.Container gap={2} justify='flex-start'>
           {pokemons.map(pokemon => (
