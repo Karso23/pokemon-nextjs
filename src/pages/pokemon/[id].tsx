@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import React from 'react'
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { MainLayout } from '@/layouts'
 import { PokeDetail } from '@/interfaces'
 import { pokeApi } from 'api'
@@ -10,7 +10,7 @@ interface Props {
   pokemon: PokeDetail;
 }
 
-const PokemonDetail: FC<Props> = ({ pokemon }) => {
+const PokemonDetail: NextPage<Props> = ({ pokemon }) => {
 
   return (
     <>

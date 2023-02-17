@@ -1,16 +1,21 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image';
+import { NextPage } from 'next';
 
 import { Button, Card, Grid, Text } from '@nextui-org/react'
 
+import confetti from 'canvas-confetti'
+
 import { PokeDetail } from '@/interfaces'
 import { urlImg } from '@/helpers'
-import { localFavorites } from 'utils';
+import { localFavorites } from 'utils'
+
 interface Props {
   pokemon: PokeDetail;
 }
 
-const PokemonDetails: FC<Props> = ({ pokemon }) => {
+// Se puede tambien usar NextPage en lugar de FC como tipo de dato para los componentes funcionales
+const PokemonDetails: NextPage<Props> = ({ pokemon }) => {
 
   const { name, id, stats, types, abilities, moves, sprites } = pokemon;
 
@@ -22,6 +27,19 @@ const PokemonDetails: FC<Props> = ({ pokemon }) => {
 
     // Setea lo opuesto que hay en isInFavorites
     setIsInFavorites(!isInFavorites)
+
+    if (isInFavorites) return
+    confetti({
+      zIndex: 999,
+      particleCount: 100,
+      spread: 160,
+      angle: -100,
+      origin: {
+        x: 1,
+        y: 0
+      }
+    })
+
 
   }
 
