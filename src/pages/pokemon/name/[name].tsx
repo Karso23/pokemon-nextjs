@@ -1,11 +1,9 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import axios from 'axios'
 import { MainLayout } from '@/layouts'
 import { PokeDetail } from '@/interfaces'
 import PokemonDetails from '@/components/details/PokemonDetails'
 import { pokeApi } from 'api'
-import { PokemonByNameAPI } from '../../../interfaces/pokemon-api-by-name';
 import { getPokemonInfo } from 'utils'
 interface Props {
   pokemon: PokeDetail;
