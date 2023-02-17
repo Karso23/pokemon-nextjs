@@ -32,5 +32,5 @@ const savedPokemons = (): number[] => {
   return JSON.parse(localStorage.getItem('favorites') || '[]');
 }
 
-// exportamos la funcion
+// exportamos las funciones por default
 export default { toggleFavorite, existInFavorites, savedPokemons }

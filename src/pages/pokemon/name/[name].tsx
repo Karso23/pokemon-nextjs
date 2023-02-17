@@ -6,7 +6,7 @@ import { PokeDetail } from '@/interfaces'
 import PokemonDetails from '@/components/details/PokemonDetails'
 import { pokeApi } from 'api'
 import { PokemonByNameAPI } from '../../../interfaces/pokemon-api-by-name';
-
+import { getPokemonInfo } from 'utils'
 interface Props {
   pokemon: PokeDetail;
 }
@@ -33,7 +33,7 @@ export default PokemonByNamePage;
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   // Aqui guardamos lo que viene de la Api
-  const { data } = await pokeApi.get(`/pokemon?limit=10`)
+  const { data } = await pokeApi.get(`/pokemon?limit=250`)
 
 
   const arr = data.results
@@ -49,33 +49,17 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     params: { name: name }
   }))
 
-  paths.map(e => console.log(e.params.name));
-
-
   return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (paths) => {
 
-  // Aqui guardamos lo que viene por params (del url)
   const { params } = paths;
-
-  // Aqui guardamos lo que viene de la Api
-  const { data } = await axios.get<PokemonByNameAPI>(`https://pokeapi.co/api/v2/pokemon/${params?.name}`)
-
-  const finalObject = {
-    name: data.name,
-    id: data.id,
-    stats: data.stats,
-    types: data.types,
-    abilities: data.abilities,
-    moves: data.moves.slice(0, 10),
-    sprites: data.sprites
-  };
 
   return {
     props: {
-      pokemon: finalObject
+      pokemon: await getPokemonInfo.get_pokemon_info_name(`${params?.name}` || '')
     }
   }
+
 }
