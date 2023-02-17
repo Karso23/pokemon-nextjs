@@ -17,7 +17,7 @@ interface Props {
 }
 
 // Local Constantes
-const limit: number = 250;
+const limit: number = 50;
 
 const HomePage: FC<Props> = ({ pokemons }) => {
 

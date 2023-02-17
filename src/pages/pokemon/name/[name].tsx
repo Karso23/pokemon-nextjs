@@ -31,7 +31,7 @@ export default PokemonByNamePage;
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   // Aqui guardamos lo que viene de la Api
-  const { data } = await pokeApi.get(`/pokemon?limit=250`)
+  const { data } = await pokeApi.get(`/pokemon?limit=50`)
 
 
   const arr = data.results
@@ -54,10 +54,20 @@ export const getStaticProps: GetStaticProps = async (paths) => {
 
   const { params } = paths;
 
-  return {
-    props: {
-      pokemon: await getPokemonInfo.get_pokemon_info_name(`${params?.name}` || '')
+  const pokemon = await getPokemonInfo.get_pokemon_info_name(`${params?.name}` || '')
+
+  if (!pokemon) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
     }
+  }
+
+  return {
+    props: { pokemon },
+    revalidate: 86400 //in seconds -> 60 * 60 * 24 asi se validara la pagina cada 24Hrs
   }
 
 }

@@ -33,7 +33,7 @@ export default PokemonDetail;
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   // Intruccion que crea un array de 150 elementos
-  const arr151 = [...Array(250)].map((e, i) => `${i + 1}`)
+  const arr151 = [...Array(50)].map((e, i) => `${i + 1}`)
 
   return {
     paths: arr151.map(id => ({
@@ -47,12 +47,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { id } = params as { id: string };
 
-  return {
-    props: {
-      pokemon: await getPokemonInfo.get_pokemon_by_id(id)
+  const pokemon = await getPokemonInfo.get_pokemon_by_id(id)
+
+  if (!pokemon) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
     }
   }
 
+  return {
+    props: { pokemon },
+    revalidate: 86400 //in seconds -> 60 * 60 * 24 asi se validara la pagina cada 24Hrs
+  }
 
 }
 
