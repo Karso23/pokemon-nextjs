@@ -8,7 +8,6 @@ import { pokeApi } from 'api';
 const get_pokemon_info_name = async (name: string) => {
   // Aqui guardamos lo que viene de la Api
   const { data } = await pokeApi.get<PokemonByNameAPI>(`/pokemon/${name}`)
-  console.log(data);
 
   const obj = {
     name: data.name,

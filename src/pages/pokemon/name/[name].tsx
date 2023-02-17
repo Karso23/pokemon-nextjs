@@ -13,7 +13,7 @@ const PokemonByNamePage: NextPage<Props> = ({ pokemon }) => {
 
   return (
     <>
-      <MainLayout title={pokemon.name.toUpperCase()}>
+      <MainLayout title={`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}`}>
 
         <PokemonDetails pokemon={pokemon} />
 
